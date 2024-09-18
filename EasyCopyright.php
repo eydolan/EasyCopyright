@@ -5,7 +5,7 @@
 ##About##
 
 
-* By Cameron Gilroy
+* By Cameron Gilroy - few change to make it work in php 8 by eydolan
 * EasyCopyright
 * Version: 1.1.1
 * Based in part on Copyright by AMDbuilder
@@ -48,23 +48,17 @@ You can also call the contents of a chunk into any of these fields like this <co
 * PoweredBySeparator - "-"
 */
 
-$Name = isset($Name)? $Name : $modx->getOption('name',$scriptProperties,'[[++site_name]]');
+$Name = $Name ?? $modx->getOption('name', $scriptProperties, '[[++site_name]]');
 
-$PoweredBySeparator = isset($PoweredBySeparator)? $PoweredBySeparator : "-";
-$Powered = isset($Powered)? $Powered : "Powered by <a href='http://www.modxcms.com'>MODx</a>";
+$PoweredBySeparator = $PoweredBySeparator ?? "-";
+$Powered = $Powered ?? "Powered by <a href='http://www.modxcms.com'>MODx</a>";
 
-if ($PoweredBy != 'false') {
+$PoweredBy = $PoweredBy !== 'false' ? " {$PoweredBySeparator} {$Powered}" : "";
 
-	$PoweredBy = " ".$PoweredBySeparator." ".$Powered;
-
-} else {
-	$PoweredBy = "";
-}
-
-$YearSeparator = isset($YearSeparator)? $YearSeparator : "-";
+$YearSeparator = $YearSeparator ?? "-";
 $cYear = date("Y");
-$StartYear = isset($StartYear)? $StartYear : $cYear;
-$years = ($cYear > $StartYear) ? $StartYear.$YearSeparator.$cYear : $cYear;
+$StartYear = $StartYear ?? $cYear;
+$years = $cYear > $StartYear ? "{$StartYear}{$YearSeparator}{$cYear}" : $cYear;
 
-return "&copy; $Name $years$PoweredBy";
+return "&copy; {$Name} {$years}{$PoweredBy}";
 ?>
