@@ -3,9 +3,9 @@
 ##About##
 
 
-* By Cameron Gilroy
+* By Cameron Gilroy / fork by eydolan to make it work in modx 3 and php 8
 * EasyCopyright
-* Version: 1.1.1
+* Version: 1.1.2
 * Based in part on Copyright by AMDbuilder
 * Creator: Cameron Gilroy http://www.camerongilroy.com
 * Support URL: http://www.camerongilroy.com/
